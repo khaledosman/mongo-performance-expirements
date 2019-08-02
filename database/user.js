@@ -5,7 +5,8 @@ const UserSchema = new mongoose.Schema({
   email: String,
   age: Number,
   details: mongoose.Schema.Types.Mixed,
-  birthDate: Date
+  birthDate: Date,
+  favoriteFruit: String
 })
 
 const User = mongoose.model('User', UserSchema)
@@ -15,7 +16,11 @@ const IndexedUser = new mongoose.Schema({
   email: String,
   age: Number,
   details: mongoose.Schema.Types.Mixed,
-  birthDate: Date
+  birthDate: Date,
+  favoriteFruit: {
+    type: String,
+    index: true
+  }
 })
 
 IndexedUser.index({ age: -1 })

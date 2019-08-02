@@ -12,6 +12,7 @@ const { User, UserWithIndex } = require('./database/user');
     await init()
 
     const query = { age: { $gt: 22 } }
+    // const query = { favoriteFruit: 'potato' }
 
     console.time('default_query')
     await User.find(query)
@@ -57,12 +58,14 @@ const { User, UserWithIndex } = require('./database/user');
 })()
 
 function populateDBWithDummyData (numberOfItems) {
-  const docs = [...new Array(numberOfItems)].map(_ => ({
+  const docs = [...new Array(numberOfItems)].map((_, index) => ({
     email: casual.email,
     name: casual.name,
     age: casual.integer(0, 100),
     details: casual.array_of_integers(100),
-    birthDate: new Date(casual.date('YYYY-MM-DD'))
+    birthDate: new Date(casual.date('YYYY-MM-DD')),
+    favoriteFruit: index % 2 === 0 ? 'tomato' : 'potato'
+
   }))
 
   return Promise.all([UserWithIndex.insertMany(docs), User.insertMany(docs)])

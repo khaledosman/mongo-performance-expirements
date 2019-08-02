@@ -26,6 +26,11 @@ const { User, UserWithIndex } = require('./database/user');
       .select({ name: 1, _id: 1, age: 1, email: 1 })
     console.timeEnd('query_with_select')
 
+    console.time('query_with_select_index')
+    await UserWithIndex.find(query)
+      .select({ name: 1, _id: 1, age: 1, email: 1 })
+    console.timeEnd('query_with_select_index')
+
     console.time('lean_query')
     await User.find(query).lean()
     console.timeEnd('lean_query')
@@ -34,11 +39,18 @@ const { User, UserWithIndex } = require('./database/user');
     await UserWithIndex.find(query).lean()
     console.timeEnd('lean_with_index')
 
+    console.time('lean_with_select')
+    await User.find(query)
+      .select({ name: 1, _id: 1, age: 1, email: 1 })
+      .lean()
+    console.timeEnd('lean_with_select')
+
     console.time('lean_select_index')
     await UserWithIndex.find(query)
       .select({ name: 1, _id: 1, age: 1, email: 1 })
       .lean()
     console.timeEnd('lean_select_index')
+    process.exit(0)
   } catch (err) {
     console.error(err)
   }
@@ -61,8 +73,8 @@ async function init () {
   await Promise.all([User.deleteMany({}), UserWithIndex.deleteMany({})])
   console.log('db cleaned')
 
-  const numberOfItems = 20000
+  const numberOfItems = 1000
   console.log(`adding ${numberOfItems} users to the database`)
-  await populateDBWithDummyData(20000)
+  await populateDBWithDummyData(1000)
   console.log(`finished populating the database with ${numberOfItems} users`)
 }

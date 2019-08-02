@@ -44,8 +44,8 @@ const { User, UserWithIndex } = require('./database/user');
   }
 })()
 
-function populateDBWithDummyData () {
-  const docs = [...new Array(20000)].map(_ => ({
+function populateDBWithDummyData (numberOfItems) {
+  const docs = [...new Array(numberOfItems)].map(_ => ({
     email: casual.email,
     name: casual.name,
     age: casual.integer(0, 100),
@@ -61,7 +61,8 @@ async function init () {
   await Promise.all([User.deleteMany({}), UserWithIndex.deleteMany({})])
   console.log('db cleaned')
 
-  console.log('populating db with dummy data')
-  await populateDBWithDummyData()
-  console.log('finished populating')
+  const numberOfItems = 20000
+  console.log(`adding ${numberOfItems} users to the database`)
+  await populateDBWithDummyData(20000)
+  console.log(`finished populating the database with ${numberOfItems} users`)
 }

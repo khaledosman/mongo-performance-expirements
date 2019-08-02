@@ -7,6 +7,7 @@ Testing different ways of optimizing MongoDB queries with Mongoose
 `yarn start`
 
 # Sample output result
+```
 cleaning db
 db cleaned
 adding 100000 users to the database
@@ -19,3 +20,4 @@ lean_query: 602.460ms
 lean_with_index: 610.920ms
 lean_with_select: 245.496ms
 lean_select_index: 285.485ms
+```

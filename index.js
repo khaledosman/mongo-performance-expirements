@@ -11,8 +11,8 @@ const { User, UserWithIndex } = require('./database/user');
 
     await init()
 
-    const query = { age: { $gt: 22 } }
-    // const query = { favoriteFruit: 'potato' }
+    // const query = { age: { $gt: 22 } }
+    const query = { favoriteFruit: 'potato' }
 
     console.time('default_query')
     await User.find(query)
@@ -76,8 +76,8 @@ async function init () {
   await Promise.all([User.deleteMany({}), UserWithIndex.deleteMany({})])
   console.log('db cleaned')
 
-  const numberOfItems = 1000
+  const numberOfItems = 10000
   console.log(`adding ${numberOfItems} users to the database`)
-  await populateDBWithDummyData(1000)
+  await populateDBWithDummyData(10000)
   console.log(`finished populating the database with ${numberOfItems} users`)
 }

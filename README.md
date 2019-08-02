@@ -2,9 +2,9 @@
 Testing different ways of optimizing MongoDB queries with Mongoose
 
 # Running the script
-`mongod`
-`npm install`
-`yarn start`
+1. `mongod`
+1. `npm install`
+1. `yarn start`
 
 # Sample output result
 ```

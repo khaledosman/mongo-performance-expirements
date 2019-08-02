@@ -1,0 +1,30 @@
+{
+  "name": "mongo-performance-expirements",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/khaledosman/mongo-performance-expirements.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/khaledosman/mongo-performance-expirements/issues"
+  },
+  "homepage": "https://github.com/khaledosman/mongo-performance-expirements#readme",
+  "devDependencies": {
+    "dotenv": "^8.0.0",
+    "nodemon": "^1.19.1",
+    "standard": "^13.1.0"
+  },
+  "dependencies": {
+    "casual": "^1.6.2",
+    "mongoose": "^5.6.7"
+  }
+}

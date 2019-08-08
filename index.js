@@ -76,7 +76,7 @@ async function init () {
   await Promise.all([User.deleteMany({}), UserWithIndex.deleteMany({})])
   console.log('db cleaned')
 
-  const numberOfItems = 1000
+  const numberOfItems = 10000
   console.log(`adding ${numberOfItems} users to the database`)
   await populateDBWithDummyData(numberOfItems)
   console.log(`finished populating the database with ${numberOfItems} users`)

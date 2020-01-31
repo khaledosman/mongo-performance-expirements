@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/khaledosman/mongo-performance-expirements#readme",
   "devDependencies": {
-    "dotenv": "^8.0.0",
+    "dotenv": "^8.2.0",
     "nodemon": "^1.19.1",
     "standard": "^13.1.0"
   },

@@ -12,7 +12,9 @@ function fetchDogs (numberOfItems) {
   try {
     await mongoose.connect('mongodb://localhost:27017/perftest', {
       useNewUrlParser: true,
-      useCreateIndex: true
+      useCreateIndex: true,
+      useFindAndModify: false,
+      useUnifiedTopology: true
     })
     await Animal.deleteMany({})
     const dogs = fetchDogs(2)
@@ -21,6 +23,7 @@ function fetchDogs (numberOfItems) {
       name: casual.name,
       woofPower: casual.integer(0, 100)
     }).save()
+    // await Dog.findOneAndUpdate({ name: 'lol' }, dogs[0], { upsert: true, new: true }).lean()
     await Dog.bulkWrite(dogs.map(dog => ({
       updateOne: {
         filter: { name: dog.name },

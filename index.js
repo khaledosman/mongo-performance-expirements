@@ -11,8 +11,8 @@ const { User, UserWithIndex } = require('./database/user');
 
     await init()
 
-    // const query = { age: { $gt: 22 } }
-    const query = { favoriteFruit: 'potato' }
+    const query = { age: { $gt: 22 } }
+    // const query = { favoriteFruit: 'potato' }
 
     console.time('default_query')
     await User.find(query)

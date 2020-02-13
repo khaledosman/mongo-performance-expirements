@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const { Animal, Cat, Dog } = require('./database/animal')
 const casual = require('casual')
+
 function fetchDogs (numberOfItems) {
   return [...new Array(numberOfItems)].map((_, index) => ({
     name: casual.name,
@@ -10,7 +11,7 @@ function fetchDogs (numberOfItems) {
 
 (async () => {
   try {
-    await mongoose.connect('mongodb://localhost:27017/perftest', {
+    await mongoose.connect('mongodb://localhost:27017/animals', {
       useNewUrlParser: true,
       useCreateIndex: true,
       useFindAndModify: false,
@@ -31,6 +32,7 @@ function fetchDogs (numberOfItems) {
         upsert: true
       }
     })))
+    process.exit(0)
   } catch (err) {
     console.error(err)
   }

@@ -6,7 +6,9 @@ const { User, UserWithIndex } = require('./database/user');
   try {
     await mongoose.connect('mongodb://localhost:27017/perftest', {
       useNewUrlParser: true,
-      useCreateIndex: true
+      useCreateIndex: true,
+      useFindAndModify: false,
+      useUnifiedTopology: true
     })
 
     await init()
@@ -14,9 +16,9 @@ const { User, UserWithIndex } = require('./database/user');
     const query = { age: { $gt: 22 } }
     // const query = { favoriteFruit: 'potato' }
 
-    console.time('default_query')
+    console.time('query')
     await User.find(query)
-    console.timeEnd('default_query')
+    console.timeEnd('query')
 
     console.time('query_with_index')
     await UserWithIndex.find(query)
@@ -61,7 +63,7 @@ function populateDBWithDummyData (numberOfItems) {
   const docs = [...new Array(numberOfItems)].map((_, index) => ({
     email: casual.email,
     name: casual.name,
-    age: casual.integer(0, 100),
+    age: casual.integer(0, 50),
     details: casual.array_of_integers(100),
     birthDate: new Date(casual.date('YYYY-MM-DD')),
     favoriteFruit: index % 2 === 0 ? 'tomato' : 'potato'
